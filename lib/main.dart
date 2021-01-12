@@ -8,18 +8,18 @@ class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
-class MyAppState extends State<MyApp> {
-  var quetionIndex = 0;
+class _MyAppState extends State<MyApp> {
+  var _quetionIndex = 0;
 
-  void answerQuetion() {
+  void _answerQuetion() {
     setState(() {
-      quetionIndex = quetionIndex + 1;
+      _quetionIndex = _quetionIndex + 1;
     });
-    print(quetionIndex);
+    print(_quetionIndex);
   }
 
   @override
@@ -36,10 +36,10 @@ class MyAppState extends State<MyApp> {
           ),
           body: Column(
             children: [
-              Text(quetions[quetionIndex]),
+              Text(quetions[_quetionIndex]),
               RaisedButton(
                 child: Text('Answer 1'),
-                onPressed: answerQuetion,
+                onPressed: _answerQuetion,
               ),
               RaisedButton(
                 child: Text('Answer 2'),
