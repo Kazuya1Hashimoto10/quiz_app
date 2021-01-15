@@ -20,44 +20,52 @@ class _MyAppState extends State<MyApp> {
     {
       'quetionText': 'What\'s your favorite color?',
       'answers': [
-        'Black',
-        'Red',
-        'Green',
-        'White',
+        {'text': 'Black','score': 10,},
+        {'text': 'Red','score': 5,},
+        {'text': 'Green','score': 3,},
+        {'text': 'White','score': 1,},
       ],
     },
     {
       'quetionText': 'What\'s your favorite animal?',
       'answers': [
-        'Rabit',
-        'Snake',
-        'Elephant',
-        'Lion',
+        {'text': 'Rabit','score': 3,},
+        {'text': 'Snake','score': 1,},
+        {'text': 'Elephant','score': 5,},
+        {'text': 'Lion','score': 10,},
       ],
     },
     {
       'quetionText': 'Who\'s your favorite instractor?',
       'answers': [
-        'Max',
-        'Jack',
-        'Poter',
-        'Kazuya',
+        {'text': 'Max','score': 10,},
+        {'text': 'Jack','score': 1,},
+        {'text': 'Poter','score': 3,},
+        {'text': 'Kazuya','score': 5,},
       ],
     },
   ];
 
   var _quetionIndex = 0;
+  var _totalScore = 0;
 
-  void _answerQuetion() {
-    if (_quetionIndex < _quetions.length) {
-      print('We have more quetions!');
-    }
+  void _answerQuetion(int score) {
+    
+    _totalScore += score;
+
     setState(() {
       _quetionIndex = _quetionIndex + 1;
     });
     print(_quetionIndex);
   }
 
+  void _resetQuiz(){
+    setState(() {
+      _quetionIndex = 0;
+      _totalScore = 0;
+    });
+  }
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -71,7 +79,7 @@ class _MyAppState extends State<MyApp> {
                 quetionIndex: _quetionIndex,
                 quetions: _quetions,
               )
-            : Result(),
+            : Result(_totalScore,_resetQuiz,),
       ),
     );
   }
